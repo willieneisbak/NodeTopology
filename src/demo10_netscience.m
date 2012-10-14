@@ -27,12 +27,6 @@ fprintf('Imported data: %d nodes.\n',length(graph));
 names = regexp(net{1},';','split');
 names = names(2:end);
 
-% ------------
-numToKeep = 30;
-graph = graph(1:numToKeep,1:numToKeep);
-names = names(1:numToKeep);
-% ------------
-
 % get local topologies of all nodes
 topCell = makeLocalTopologyGraphs(graph,1);
 
