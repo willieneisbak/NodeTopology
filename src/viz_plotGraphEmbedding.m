@@ -1,4 +1,3 @@
-
 function handle = viz_plotGraphEmbedding(nodeData,graph,textCell,labels)
 
 % this function plots the graph in (up to) 3 dimensions, based on the euclidean embedding.
@@ -11,7 +10,6 @@ function handle = viz_plotGraphEmbedding(nodeData,graph,textCell,labels)
 % note: if graph is given as input, this function automatically draws graph edges
 
 
-
 % default linesOn = 0
 if nargin < 2
 	linesOn = 0;
@@ -22,20 +20,18 @@ end
 % only keep first three features of nodeData
 	% later on, I might want to call a lower-dim embedding function here
 if size(nodeData,2)>3
-	nodeData = nodeData(:,1:2);
+	nodeData = nodeData(:,1:3);
 	fprintf('viz: only the first three features of the nodeData matrix are used (other features discarded)\n');
 end
 
-% % regularize each component of nodeData to be in [0,1]
+% regularize each component of nodeData to be in [0,1]
 for i = 1 : size(nodeData,2)
 	nodeData(:,i) = nodeData(:,i) / max(nodeData(:,i));
 end
 
 % slightly perturn nodeData matrix to resolve overlapping nodes (i.e. with same topology)
-% temp = 0.07*rand(size(nodeData,1),size(nodeData,2));
-% nodeData = nodeData + temp;
-
-
+ temp = 0.07*rand(size(nodeData,1),size(nodeData,2));
+ nodeData = nodeData + temp;
 
 % CREATE FIGURE 
 figure,
@@ -85,6 +81,7 @@ else
 	end
 end
 axis square
+box on
 
 % SET CUSTOM COLORMAP (for better colors)
 temp = colormap(hsv);
@@ -103,4 +100,3 @@ if nargin>2 && length(textCell)>=size(nodeData,1)
 		end			
 	end
 end
-box on

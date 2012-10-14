@@ -1,4 +1,3 @@
-
 function demo2_twoStepTrueTreeEmbed()
 
 % this demo carries out two step true euclidean embedding on a tree graph
