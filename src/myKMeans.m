@@ -1,4 +1,3 @@
-
 function labels = myKMeans(data, k, numIter)
 
 % this function carries out the k means clustering algorithm
