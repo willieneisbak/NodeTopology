@@ -1,4 +1,3 @@
-
 function topCell = makeLocalTopologyGraphs(graph,k)
 
 % this function makes the k-step local topology graphs (adjacency matrices) for each node in an input graph

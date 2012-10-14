@@ -1,19 +1,24 @@
+function demo6_dickensCopperfield()
 
-function demo7_footballTeams()
-
-% this demo carries out embedding of all nodes in the footballMatchups dataset.
+% this demo carries out embedding of all nodes in the davidCopperfieldGraph dataset.
 % nodes are embedded via 1-step local topologies
 % mcmc is used to compute the fned for arbitrary graphs
 
 % call this function from nodetop (most external) directory
 
-% add functions to path
-addpath(genpath('func'));
+% add src to path
+addpath(genpath('src'));
 
-footb = importdata('data/graphDataCsv/footballMatchupsGraph.csv');
+davCopp = importdata('data/graphDataCsv/davidCopperfieldGraph.csv');
 fprintf('Imported data.\n');
-graph = footb.data;
-names = footb.textdata(2:end,1);
+
+graph = davCopp.data;
+names = davCopp.textdata(2:end,1);
+
+% make graph an undirected, redundant (each edge represented twice) adj matrix
+for i = 1:length(graph)
+	graph(i,find(graph(:,i))) = 1;
+end
 
 % get local topologies of all nodes
 topCell = makeLocalTopologyGraphs(graph,1);
@@ -33,21 +38,17 @@ end
 % display results
 
 % load adjective / noun info
-temp = importdata('data/graphDataCsv/footballMatchupsGraph_nodeInfo.csv');
+temp = importdata('data/graphDataCsv/davidCopperfieldGraph_nodeInfo.csv');
 labels = temp.data(:,1);
 
 % plot principle components
 pc = princomp(fnedMat);
 % slightly separate points for better visualization
-pc = pc + 0.05*rand(length(pc),length(pc));
-viz_plotGraphEmbedding(pc(:,1:2),[],names(1:size(fnedMat,1)),labels');
-xlim([-0.95,1.1]);
-ylim([-.21,1.05]);
+pc = pc + 0.08*rand(length(pc),length(pc));
+viz_plotGraphEmbedding(fnedMat(:,4:5),[],names(1:size(fnedMat,1)),labels');
 box on
-viz_plotGraphEmbedding(pc(:,1:2),graph,{},labels');
-xlim([-0.95,1.1]);
-ylim([-.21,1.05]);
+viz_plotGraphEmbedding(fnedMat(:,1:3),graph,{},labels');
 box on
 
 % save workspace for later manipulation
-save('demo7_footballTeams_results');
+save('demo6_dickensCopperfield_results');

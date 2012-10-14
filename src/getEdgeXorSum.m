@@ -1,4 +1,3 @@
-
 function xorSum = getEdgeXorSum(A1,A2,map)
 
 % this function computes the overlap between the edges of two graphs, given a mapping from the nodes of the first graph to the nodes of the other graph
@@ -9,7 +8,6 @@ function xorSum = getEdgeXorSum(A1,A2,map)
 
 % output: xorSum, the total edge non-overlap given the two graphs and the mapping
 %	which I often write as d(A1,A2,map)
-
 
 
 % give error if matrices aren't the same size (for now)

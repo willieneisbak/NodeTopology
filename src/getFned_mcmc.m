@@ -1,4 +1,3 @@
-
 function fned = getFned_mcmc(A1,A2)
 
 % this function computes the fixed node edit distance (FNED) between two local topologies via MCMC/sampling.
@@ -11,8 +10,6 @@ function fned = getFned_mcmc(A1,A2)
 % output: fned, the fixed node edit distance between the two local topologies
 
 
-
-
 % check if graphs are square
 if size(A1,1)~=size(A1,2)  ||  size(A2,1)~=size(A2,2)
 	error('Input adjacency matrices should be square.')
@@ -22,7 +19,6 @@ end
 if sum(diag(A1))>0  ||  sum(diag(A2))>0
 	error('Input adjacency matrices should not have nodes with self edges.');
 end
-
 
 % adjust smaller of the adjacency matrices
 if length(A1)==length(A2)

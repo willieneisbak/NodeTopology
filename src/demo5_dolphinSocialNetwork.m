@@ -1,4 +1,3 @@
-
 function demo5_dolphinSocialNetwork()
 
 % this demo carries out embedding of all nodes in the dolphinSocialNetwork dataset.
@@ -7,8 +6,8 @@ function demo5_dolphinSocialNetwork()
 
 % call this function from nodetop (most external) directory
 
-% add functions to path
-addpath(genpath('func'));
+% add src to path
+addpath(genpath('src'));
 
 dolph = importdata('data/graphDataCsv/dolphinSocialNetwork.csv');
 fprintf('Imported data.\n');
