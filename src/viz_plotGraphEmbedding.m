@@ -95,6 +95,7 @@ if nargin>2 && length(textCell)>=size(nodeData,1)
 		%text(nodeData(i,1)+0.5*(2*rand-1),nodeData(i,2)+0.05*(2*rand-1),nodeData(i,3)+0.05*(2*rand-1),num2str(i),'FontWeight','bold');
 		if size(nodeData,2) == 2
 			text(nodeData(i,1),nodeData(i,2),textCell{i},'FontWeight','bold','FontSize',12);
+			text(nodeData(i,1),nodeData(i,2),num2str(labels(i)),'FontWeight','bold','FontSize',20);
 		elseif size(nodeData,2) == 3
 			text(nodeData(i,1)+noiseAmt*(2*rand-1),nodeData(i,2)+noiseAmt*(2*rand-1),nodeData(i,3)+noiseAmt*(2*rand-1),textCell{i},'FontWeight','bold','FontSize',12);
 		end			
