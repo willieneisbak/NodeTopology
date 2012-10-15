@@ -215,8 +215,12 @@ Here, we formulate computation of the FNED between nodes as a stochastic combina
 % \subsection{Exploring the Embeddings of Nodes in Random Trees}
 % This experiment illustrates the embeddings of nodes in synthetically generated random tree graphs. 
 
-\subsection{Role Discovery Demonstration on Small Social Networks}
 
+\subsection{Assessment of Role Discovery on Synthetic Graphs}
+We'd like to asses the performance of this method on synthetic data containing nodes with known roles (i.e. nodes with pre-specified types of local topologies), in order to judge whether the method is able to accurately find groups with similar topological structure in a graph. To carry out this synthetic experiment, we defined a simple model for roles in a network consisting of a Gaussian mixture over the node degrees and a Gaussian mixture over the number of edges 
+
+
+\subsection{Role Discovery Demonstration on Small Social Networks}
 As an initial demonstration of our method, we apply it to two well studied small social network datasets. The first shows friendships among 34 members of a karate club at a US university, and the second consists of associations among a collection of 62 dolphins \cite{bottleNoseDolphinPeople}, where an edge was assigned between two dolphins if researchers spotted them traveling in the same group.
 \begin{figure*}[h!tbp]
   \centering               
@@ -229,7 +233,6 @@ Embedding was performed using the MCMC algorithm to compute the FNED between 1-s
 
 
 \subsection{College Football Team Matches with League Labels}
-
 The datset in this experiment consists of the ``matchups'' between 115 college football teams \cite{newman2006finding} in a given season. Edges are assigned between two teams if they play each other during the season. Additionally, this dataset provides a label for each team to the league in which it resides (out of 12 leagues). 
 
 Similar to the previous experiment, we hope to show that the embedding method described in this paper yields features that could be used to benefit a supervised machine learning problem; in particular, we hope to see an embedding that places teams with similar matchup topologies near each other in space. We would guess that teams residing in the same league have similar matchup topologies.
@@ -245,7 +248,6 @@ Embedding was performed using the MCMC algorithm to compute the FNED between 1-s
 
 
 \subsection{Comparing Topological Descriptors with Node Degree}
-
 The dataset in this experiment consists of the 60 most common nouns and adjectives in Charles Dickens' David Copperfield \cite{newman2006finding}. Edges are assigned between words if they appear adjacent to each other at any point in the text.
 
 In this experiment, we hope to show that the embedding method described in this paper yields features that could be used to benefit a supervised machine learning problem; if so, Euclidean local topology features could be added to the features of datasets that are equipped with information about relationships between data elements. In particular, we hope to see some sort of differentiation between the embedding of adjectives and the embedding of the nouns in this dataset.

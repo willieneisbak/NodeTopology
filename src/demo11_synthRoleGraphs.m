@@ -4,10 +4,11 @@ function fnedMat = demo11_synthRoleGraphs()
 
 
 % role mixture distributions are below
-mu1 = [5,10]; sig1 = [0.5,0.5]; mix1 = [0.5,0.5]; % gaussian mixture for nodeDegree
-mu2 = [2,20]; sig2 = [0.5,0.5]; mix2 = [0.5,0.5]; % gaussian mixture for numInterConnects
+sigscale = 0.001
+mu1 = [2,6]; sig1 = [sigscale,sigscale]; mix1 = [0.5,0.5]; % gaussian mixture for nodeDegree
+mu2 = [0,2]; sig2 = [sigscale,sigscale]; mix2 = [0.5,0.5]; % gaussian mixture for numInterConnects
 
-numNodes = 20;
+numNodes = 50;
 topCell = {};
 for i=1:numNodes
     nodeDegree = ceil(gmmRand(mu1,sig1,mix1)); % discretize sample from gmm
@@ -19,6 +20,7 @@ for i=1:numNodes
         numInterConnects = 0; % don't let sample be negative
     end
     topCell{end+1} = makeRoleGraph(nodeDegree,numInterConnects);
+    fprintf('nodeDegree: %d  numInterConnects: %d\n', nodeDegree, numInterConnects);
 end
 fprintf('Completed making %d local-topology graphs.\n',numNodes);
 
