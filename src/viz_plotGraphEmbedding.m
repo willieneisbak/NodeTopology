@@ -40,8 +40,8 @@ figure,
 	% node: do this first so edges are below nodes in visualization
 	% note: for undirected graph with "redundant" adjacency matrix, this plots edges twice
 	% note: for directed graph, this plot does not specify edge direction
-%edgeColor = 'k';
-edgeColor = [0 0 0]; % edgeColor = [0.25 0.25 0.25]; % <--for dark grey
+%edgeColor = [0 0 0];  % <--for black edges
+edgeColor = [0.25 0.25 0.25]; % <--for dark grey edges
 hold on
 if linesOn == 1
 	for i = 1 : size(graph,1)
@@ -75,7 +75,7 @@ else
 	if size(nodeData,2)==3
 		scatter3(nodeData(:,1),nodeData(:,2),nodeData(:,3),100*ones(size(nodeData,1),1),labels,'filled');
 	elseif size(nodeData,2)==2
-		scatter(nodeData(:,1),nodeData(:,2),100*ones(size(nodeData,1),1),labels,'filled');
+		scatter(nodeData(:,1),nodeData(:,2),150*ones(size(nodeData,1),1),labels,'filled', 'MarkerEdgeColor','k');
 	else
 		error('viz: nodeData matrix must have either 2 or 3 features (# of columns).');
 	end
