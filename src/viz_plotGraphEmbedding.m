@@ -73,9 +73,9 @@ if nargin<=3
 else
 	% make scatter plot instead if labels given
 	if size(nodeData,2)==3
-		scatter3(nodeData(:,1),nodeData(:,2),nodeData(:,3),100*ones(size(nodeData,1),1),labels,'filled');
+		scatter3(nodeData(:,1),nodeData(:,2),nodeData(:,3),150*ones(size(nodeData,1),1),labels,'filled','MarkerEdgeColor','k');
 	elseif size(nodeData,2)==2
-		scatter(nodeData(:,1),nodeData(:,2),150*ones(size(nodeData,1),1),labels,'filled', 'MarkerEdgeColor','k');
+		scatter(nodeData(:,1),nodeData(:,2),150*ones(size(nodeData,1),1),labels,'filled','MarkerEdgeColor','k');
 	else
 		error('viz: nodeData matrix must have either 2 or 3 features (# of columns).');
 	end

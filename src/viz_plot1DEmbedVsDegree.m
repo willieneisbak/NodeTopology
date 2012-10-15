@@ -28,9 +28,10 @@ figure,
 % PLOT
 hold on
 if nargin<=3
-    plot(degrees,nodeData,'o-','LineWidth',2);
+    plot(degrees,nodeData,'x-','LineWidth',2);
 else
-	scatter(degrees,nodeData,100*ones(length(nodeData),1),labels,'filled');
+    scatter(degrees,nodeData,80*ones(length(nodeData),1),labels,'filled','o','MarkerEdgeColor','k');
+	%scatter(degrees,nodeData,80*ones(length(nodeData),1),labels,'*');
 end
 axis square
 box on
