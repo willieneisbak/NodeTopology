@@ -1,4 +1,3 @@
-
 function tree = makeRandomTree(numLevels,maxNodesPerLevel)
 
 % this function makes a random undirected tree graph

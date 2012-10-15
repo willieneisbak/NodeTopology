@@ -4,7 +4,8 @@
 \usepackage[square,numbers]{natbib}
 \usepackage{amsmath,amsthm,amssymb,amsfonts,MnSymbol,epsfig,graphicx,algorithm,algorithmic}
 
-\title{Embedding Nodes via their Local Network Topology for Role Descriptors in Social Networks}
+%\title{Embedding Nodes via their Local Network Topology for Role Descriptors in Social Networks}
+\title{Embedding Nodes via their Local Network Topology for Role Discovery in Social Networks}
 %\title{Embedding Graph Vertices via Local Network Topology for Identifying Role-Types in Social Networks}
 
 \author{
@@ -25,20 +26,18 @@ Pittsburgh, PA 15213 \\
 \maketitle
 
 \begin{abstract}
-This paper proposes a method for characterizing the local network topology in the vicinity of each vertex in a graph. The method provides a Euclidean embedding of each node based on its surrounding network structure. We show how descriptors of the local topologies of vertices can be used to quantify the types of local structure found in a network and identify groups of nodes that play similar roles in relation to their surroundings. Our method for embedding makes use of the Fixed Node Edit Distance (FNED), a distance metric between the local topologies around nodes, which we define. We give multiple algorithms for computing the FNED given different graph structures, show how it can be used for embedding the local topologies of nodes in Euclidean space, and demonstrate the embedding on multiple publicly available network datasets. Results show the ability of this method to characterize diverse regions of network structure and identify groups of entities with similar roles in social networks.
+This paper proposes a method for characterizing the local network topology in the vicinity of each vertex in a graph. The method provides a Euclidean embedding of each node based on its surrounding network structure. We show how descriptors of the local topologies around vertices can be used to quantify the types of local structure found in a network and identify groups of nodes that have similar roles in relation to their surroundings. Our method for embedding makes use of the Fixed Node Edit Distance (FNED), a distance metric between the local topologies around nodes, which we define. We present algorithms for computing the FNED, show how it can be used to embed the local topologies of nodes in Euclidean space, and demonstrate the embedding on multiple publicly available network datasets. Results show the ability of this method to characterize diverse regions of network structure and identify groups of entities with similar roles in social networks.
 \end{abstract}
 
 
 \section{Introduction}
 \label{sec:intro}
-A great deal of information can be gleaned from the edge structure surrounding the nodes in a network. [The edge structure in the vicinity of a node in a network has the potential to provide information, possible useful information, about the character of the node, or about the role it plays in relation to adjacent nodes.]
-For example, in the context of social networks, the local topology around a person includes connections to friends, as well as the interconnections between friends or between friends of friends. The local network structure will depend both on the qualities of the person (such as friendliness), as well as on the nature of the friend group in which the person resides.
-This idea can be extended beyond social networks to realms such as spam detection on the web 
-[Websites have diverse local topologies based on their role in the web ecosystem.]
 
-Node degree can be viewed as a simple descriptor of local topology. However, it does not capture the potentially complex relations among the immediate neighbors of a node, nor does it incorporate information about the edge structure greater than one step away. Additionally, as the degree of a node grows, so does the number of possible types of relations among its neighbors. In order to capture the increasing complexity of the local topology, we desire a richer descriptor of the local edge structure that is able to encode the local topology as its complexity scales with node degree.
+The topological structure in the vicinity of a node in a network has the potential to provide useful information about the character of the node, or about the role it plays in relation to adjacent nodes. Networks may contain groups of nodes that have similar local topologies; identifying these groups could shed some basic insight into the range of roles played by entities in a network, gleaned wholly from relational data. For example, in the context of social networks, the local topology around a person includes connections to friends, as well as the interconnections between friends or between friends of friends. The local network structure will depend both on the immediate relations of the person as well as on the characteristics of the friend groups in which the person resides.% Descriptors of local network topology are also relevant in realms such as web spam detection and studies of roles in neural or other biological networks.
 
-To this end, we develop a method for embedding nodes in Euclidean space based on local network structure (note that a map from each node into $\mathbb{R}^{k}$ can be viewed as a $k$-dimensional descriptor of the local topology). In this paper, we devise a way to accomplish this embedding through the use of a metric that gives a distance between subgraphs of a network. The subgraphs capture local network structure, and the metric allows a $k$-dimensional descriptor to be constructed for each node by finding its distance to a set of other nodes. After defining this metric and providing algorithms for its computation, we demonstrate the method on a number of network datasets and show its ability to find groups of nodes that [have similar local structure][play similar roles in relation to their neighbors].
+Node degree can be viewed as a simple descriptor of local topology. However, it does not capture the potentially complex relations among the immediate neighbors of a node, nor does it incorporate information about the network structure greater than one step away. Additionally, as the degree of a node grows, so does the amount of possible relations among its neighbors. In order to capture the increasing complexity of the local topology, we desire a richer descriptor of the local edge structure that is able to encode the local topology as its complexity scales with node degree.
+
+To this end, we develop a method for embedding nodes in Euclidean space based on local network structure (note that a map from each node into $\mathbb{R}^{k}$ can be viewed as a $k$-dimensional descriptor of the local topology). In this paper, we present algorithms to accomplish this embedding through the use of a metric that gives a distance between the subgraphs of a network. The subgraphs capture local network structure around a node, and the metric allows a $k$-dimensional descriptor to be constructed for each node by finding its distance to a set of other nodes. After defining this metric and providing algorithms for its computation, we demonstrate the method on a number of network datasets and show its ability to find groups of nodes that have similar roles in relation to their local regions in a graph. 
 
 
 \section{Definitions}
@@ -49,7 +48,7 @@ Let $G = \{V,E\}$ be a graph with a set of vertices $V$ and edges $E$. We would 
 \begin{equation}
 T_{k}(n) = \{ V, \emph{\text{\~{E}}} \}
 \end{equation}
-Hence $T_{k}(n)$ is a subgraph of G containing node $n$. We illustrate the $k$-step local topology in Figure~\ref{fig:localTopology}, which shows the $1$-step and $2$-step local topologies around two nodes in a graph.
+Hence $T_{k}(n)$ is a subgraph of $G$ containing all of the nodes and a subset of the edges from $G$. We illustrate the $k$-step local topology in Figure~\ref{fig:localTopology}, which shows the $1$-step and $2$-step local topologies around two nodes in a graph.
 \begin{figure*}[h!tbp]
   \centering               
   \includegraphics[width=0.8\textwidth]{fig/fig1.pdf}
@@ -58,9 +57,9 @@ Hence $T_{k}(n)$ is a subgraph of G containing node $n$. We illustrate the $k$-s
 \end{figure*}
 
 \subsection{Fixed Node Edit Distance (FNED)}
-Our first step towards embedding involves defining a distance between the local topologies of nodes; we describe how the distances between nodes can be used for Euclidean embedding in Section~\ref{sec:algos}. The concept of edit distance has been shown to provide an intuitive way to represent distances between abstract structures \cite{riesen2009approximate,reis2004automatic,gao2010survey}. We aim to define an edit distance between the local topologies around nodes in a graph. We call this the Fixed Node Edit Distance (FNED), and define it to be the minimum number of edge insertions or deletions to transform the local topology around one node into the local topology around another node.
+Our first step towards embedding involves defining a distance between the local topologies around nodes; we describe how these distances are used for the Euclidean embedding in Section~\ref{sec:algos}. The concept of edit distance has been shown to provide an intuitive way to represent distances between abstract structures \cite{riesen2009approximate,reis2004automatic,gao2010survey}. We aim to define an edit distance between the local topologies around nodes in a graph. We call this the Fixed Node Edit Distance (FNED), and define it to be the minimum number of edge insertions or deletions to transform the local topology around one node into the local topology around another node.
 
-An equivalent definition of the FNED, which we refer to as the mapping-overlap formulation, allows for easier computation. Intuitively, for a given mapping between the nodes of a pair of local topologies, we can find the number of edges that ``do not overlap" (i.e. given the mapping, the number of node-pairs that are adjacent in one of the two local topologies but not adjacent in the other). The mapping that yields the minimum number of non-overlapping edges is equivalent to the FNED defined previously.
+An equivalent definition of the FNED, which we refer to as the mapping-overlap formulation, allows for easier computation. Intuitively, for a given mapping between the nodes of a pair of local topologies, we can find the number of edges that ``do not overlap" (i.e. given the mapping, the number of node-pairs that are adjacent in one of the two local topologies but not adjacent in the other). The mapping that yields the minimum number of non-overlapping edges is equivalent to the FNED defined in terms of minimal edit distance.
 
 Formally, for a graph $G = \{V,E\}$, let $\Omega_{V}$ be the set of bijections from $V$ to itself (i.e. the set of permutations of $V$). Additionally, let $\Omega_{V, a\rightarrow b}$ be $\Omega_{V}$ restricted to bijections where node $a\in V$ is mapped to node $b\in V$. For all vertices $a,b \in V$, we define the FNED between $a$ and $b$ (given the two $k$-step local topologies $T_{k}(a)$ and $T_{k}(b)$), to be
 \begin{equation}
@@ -81,14 +80,14 @@ A_{G_{1}}(i_{1},j_{1}) \oplus A_{G_{2}}(i_{2},j_{2}) =
 0 \text{ otherwise}
 \end{cases}
 \end{equation}
-We illustrate the two definitions of the FNED and show an example of the distance between two nodes in Figure~\ref{fig:fnedFigure}.
+We illustrate the two definitions of the FNED and show an example of the distance between two nodes in Figure~\ref{fig:fnedFigure}. In this figure, for the nodes $A$ and $B$ given in Figure~\ref{fig:localTopology}, we depict the FNED as a minimal sequence of edits, and as an mapping that yields the minimum number of non-overlapping edges.
 
-This project is currently concerned only with undirected graphs, with future plans to extend it to directed and other labelled graphs. 
+This paper is focuses only on undirected graphs, through it can be extended to directed and other labelled graphs by modifying the allowable edge edit operations.
 
 \begin{figure*}[h!tbp]
   \centering               
   \includegraphics[width=0.8\textwidth]{fig/fig2.pdf}
-  \caption{Illustration of the FNED between two local topologies. (i) shows the FNED viewed as a sequence of edge edits, while (ii) shows an equivalent definition of the FNED (the mapping-overlap formulation) as a collection of edges that ``do not overlap'' for a given mapping.}
+  \caption{Illustration of the FNED between two local topologies. (i) shows the FNED viewed as a minimal sequence of edge edits, while (ii) shows an equivalent definition of the FNED (the mapping-overlap formulation) as a minimal collection of edges that ``do not overlap'' (colored red) for a given mapping.}
   \label{fig:fnedFigure}
 \end{figure*}
 
@@ -119,7 +118,7 @@ The embedding into Euclidean space is wholly dependent upon computation of the F
 
 \subsection{Deterministic FNED for Trees}
 
-In Algorithm~\ref{alg:trueFnedTrees} we give a polynomial time algorithm for computing the FNED between nodes in a tree for 2-step local topologies.
+In Algorithm~\ref{alg:trueFnedTrees} we give a polynomial time algorithm for computing the FNED between nodes in a tree for 2-step local topologies. We will give approximate algorithms for computing the FNED between nodes in an arbitrary graph in Section~\ref{sec:approxFned}, as it is, in general, not possible to compute exactly in polynomial time. This algorithm can also be used as a basis for approximate FNED computation in arbitrary graphs for $2$-step local topologies.
 \begin{algorithm}[h!tbp]
 \caption{Deterministic FNED for Trees}
 \label{alg:trueFnedTrees}
@@ -142,6 +141,9 @@ In Algorithm~\ref{alg:trueFnedTrees} we give a polynomial time algorithm for com
 \STATE Note 2: XOR(i,j) returns $|n_{i} - n_{j}|$ (defined on lines 7 and 8) for $i \in T_{2}(A)$ and $j \in T_{2}(B)$.
 \end{algorithmic}
 \end{algorithm}
+
+% What is the following algorithm for? how it is different than above algo?
+% ----------------------------------------------------------------
 % \begin{algorithm}[!]
 % \caption{Deterministic True FNED for Trees}
 % \label{alg:trueFnedTrees}   % haven't gotten this label to work for some reason
@@ -168,8 +170,9 @@ In Algorithm~\ref{alg:trueFnedTrees} we give a polynomial time algorithm for com
 
 
 \subsection{Approximate FNED for Arbitrary Graphs}
+\label{sec:approxFned}
 
-Finding an optimal graph matching is not possible in polynomial time for arbitrary graphs. In this section we provide a Markov Chain Monte Carlo (MCMC)-based algorithm to search the combinatorial space of mappings between the nodes of two local topologies. The algorithm follows a directed random walk through the space of permutations of nodes in a local topology.
+Finding an optimal graph matching is not possible in polynomial time for arbitrary graphs. In this section we provide a Markov Chain Monte Carlo (MCMC)-based algorithm to search the combinatorial space of mappings between the nodes of two local topologies. The algorithm follows a directed random walk through the space of permutations of nodes in a local topology in order to minimize the FNED (adhering to the mapping-overlap formulation of the FNED).
 
 % \subsubsection{Tree Based Heuristic}
 
@@ -212,9 +215,9 @@ Here, we formulate computation of the FNED between nodes as a stochastic combina
 % \subsection{Exploring the Embeddings of Nodes in Random Trees}
 % This experiment illustrates the embeddings of nodes in synthetically generated random tree graphs. 
 
-\subsection{Graph Clustering with Local Topologies in a Dolphin Social Network}
+\subsection{Role Discovery Demonstration on Small Social Networks}
 
-The dataset in this experiment consists of a social network between a collection of 62 dolphins \cite{bottleNoseDolphinPeople}. An edge was assigned between two dolphins if researchers spotted them traveling in the same group.
+As an initial demonstration of our method, we apply it to two well studied small social network datasets. The first shows friendships among 34 members of a karate club at a US university, and the second consists of associations among a collection of 62 dolphins \cite{bottleNoseDolphinPeople}, where an edge was assigned between two dolphins if researchers spotted them traveling in the same group.
 \begin{figure*}[h!tbp]
   \centering               
   \includegraphics[width=1\textwidth]{fig/fig3.pdf}
@@ -222,23 +225,7 @@ The dataset in this experiment consists of a social network between a collection
   \label{fig:dolphinSocialNetwork}
 \end{figure*}
 
-Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies. Aften embedding, the $k$-means algorithm was carried out to perform clustering of the dolphins based on their local topologies. The $k$-means algorithm was initialized at 10 clusters, but returned three clusters as a result. The embedding seems to separate dolphins by their social patterns, and the three clusters might be interpreted as high sociability, medium sociability, and low sociability. Note that the method of node embedding presented in this paper could be viewed as a richer version of node degree, as it yields a high dimensional description of topological structure around a node, while degree yields a very local, 1-dimensional description. Figure~\ref{fig:dolphinSocialNetwork} plots the first two principal components of the node embedding, with marker color denoting the $k$-means cluster assignment (note that $k$-means was performed on the embedded feature vector, not on the principal components). The second plot on this figure shows the dolphin social network graph. Visually, one can see the number of edges decreasing when moving from left to right along the curve.
-
-
-\subsection{Words in Dickens' David Copperfield with Adjective-Noun Labels}
-
-The dataset in this experiment consists of the 60 most common nouns and adjectives in Charles Dickens' David Copperfield \cite{newman2006finding}. Edges are assigned between words if they appear adjacent to each other at any point in the text.
-
-In this experiment, we hope to show that the embedding method described in this paper yields features that could be used to benefit a supervised machine learning problem; if so, Euclidean local topology features could be added to the features of datasets that are equipped with information about relationships between data elements. In particular, we hope to see some sort of differentiation between the embedding of adjectives and the embedding of the nouns in this dataset.
-
-\begin{figure*}[h!tbp]
-  \centering               
-  \includegraphics[width=1\textwidth]{fig/fig4.pdf}
-  \caption{The 60 most common adjectives and nouns in Dickens' David Copperfield. Red markers denote adjectives and blue markers denote nouns. Words of different types tend to be embedded in different positions in space.}
-  \label{fig:dickensCopperfield}
-\end{figure*}
-
-Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies. Figure~\ref{fig:dickensCopperfield} plots the first two dimensions (and first three dimensions on the right) of the embedding feature vectors. A few of the words, along with the graph edges, are shown in the two plots. Adjectives are colored red and nouns are colored blue. From this embedding, we can see that the adjectives and nouns are slightly differentiated in the embedding space. Additionally, a group of adjectives are isolated from the rest of the words.
+Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies for both datasets. Aften embedding, the $k$-means algorithm was carried out to perform clustering of the nodes based on their local topologies. The $k$-means algorithm was initialized at 10 clusters, but returned three clusters in both cases as a result. The embedding appears to separate the entities in both networks by their social patterns, with the largest cluster containing nodes with low degree, and the other two containing clusters with high degree. In the karate class dataset, one of the larger clusters appears to be more interconnected than the other, while in the dolphin social network, the three clusters might be interpreted as high sociability, medium sociability, and low sociability. Figure~\ref{fig:dolphinSocialNetwork} plots the first two principal components of the node embedding, with marker color denoting the $k$-means cluster assignment (note that $k$-means was performed on the embedded feature vector, not on the principal components). The second plot on this figure shows the dolphin social network graph. Visually, one can see the number of edges decreasing when moving from left to right along the curve.
 
 
 \subsection{College Football Team Matches with League Labels}
@@ -249,12 +236,28 @@ Similar to the previous experiment, we hope to show that the embedding method de
 
 \begin{figure*}[h!tbp]
   \centering               
-  \includegraphics[width=1\textwidth]{fig/fig5.pdf}
+  \includegraphics[width=1\textwidth]{fig/fig4.pdf}
   \caption{A network of college football team matchups during a given season is shown. Markers are colored based on the league (out of 12) in which the associated team resides. Teams belonging to the same league tend to be embedded similarly, as do teams from similar geographic locations.}
   \label{fig:footballTeams}
 \end{figure*}
 
 Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies. Figure~\ref{fig:footballTeams} shows the first two principal components of the Euclidean embedding. This figure also shows school name for each team and the matchup graph edges. In both plots, color denotes league assignment. We find that the embedding often places football teams from the same league at similar points in space. We also find a number of other points of interest, such as places where schools from similar geographic locations are embedded similarly (even for similar geographic schools in different leagues).
+
+
+\subsection{Comparing Topological Descriptors with Node Degree}
+
+The dataset in this experiment consists of the 60 most common nouns and adjectives in Charles Dickens' David Copperfield \cite{newman2006finding}. Edges are assigned between words if they appear adjacent to each other at any point in the text.
+
+In this experiment, we hope to show that the embedding method described in this paper yields features that could be used to benefit a supervised machine learning problem; if so, Euclidean local topology features could be added to the features of datasets that are equipped with information about relationships between data elements. In particular, we hope to see some sort of differentiation between the embedding of adjectives and the embedding of the nouns in this dataset.
+
+\begin{figure*}[h!tbp]
+  \centering               
+  \includegraphics[width=1\textwidth]{fig/fig5.pdf}
+  \caption{The 60 most common adjectives and nouns in Dickens' David Copperfield. Red markers denote adjectives and blue markers denote nouns. Words of different types tend to be embedded in different positions in space.}
+  \label{fig:dickensCopperfield}
+\end{figure*}
+
+Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies. Figure~\ref{fig:dickensCopperfield} plots the first two dimensions (and first three dimensions on the right) of the embedding feature vectors. A few of the words, along with the graph edges, are shown in the two plots. Adjectives are colored red and nouns are colored blue. From this embedding, we can see that the adjectives and nouns are slightly differentiated in the embedding space. Additionally, a group of adjectives are isolated from the rest of the words.
 
 
 \section{Conclusion}
