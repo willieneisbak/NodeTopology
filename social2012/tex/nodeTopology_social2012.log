@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 OCT 2012 01:17
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 OCT 2012 02:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -494,6 +494,9 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [1
 
 {/usr/local/texlive/2012/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
@@ -502,73 +505,67 @@ File: fig/fig1.pdf Graphic file (type pdf)
  <use fig/fig1.pdf>
 Package pdftex.def Info: fig/fig1.pdf used on input line 54.
 (pdftex.def)             Requested size: 357.73405pt x 218.82469pt.
- [2 <./fig/fig1.pdf>] <fig/fig2.pdf, id=30, 708.10973pt x 341.03809pt>
+ [2 <./fig/fig1.pdf>] <fig/fig2.pdf, id=31, 708.10973pt x 341.03809pt>
 File: fig/fig2.pdf Graphic file (type pdf)
  <use fig/fig2.pdf>
 Package pdftex.def Info: fig/fig2.pdf used on input line 89.
 (pdftex.def)             Requested size: 357.73405pt x 172.29312pt.
 
-[3 <./fig/fig2.pdf>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [4]
-<fig/fig3.pdf, id=110, 1184.71147pt x 436.27773pt>
+[3 <./fig/fig2.pdf>] <fig/fig3.pdf, id=107, 1184.71147pt x 436.27773pt>
 File: fig/fig3.pdf Graphic file (type pdf)
- <use fig/fig3.pdf>
-Package pdftex.def Info: fig/fig3.pdf used on input line 224.
-(pdftex.def)             Requested size: 397.48499pt x 146.37527pt.
- [5]
-<fig/fig4.pdf, id=115, 637.44551pt x 346.63254pt>
-File: fig/fig4.pdf Graphic file (type pdf)
- <use fig/fig4.pdf>
-Package pdftex.def Info: fig/fig4.pdf used on input line 241.
-(pdftex.def)             Requested size: 397.48499pt x 216.14761pt.
 
-<fig/fig5.pdf, id=116, 896.35696pt x 282.49638pt>
+<use fig/fig3.pdf>
+Package pdftex.def Info: fig/fig3.pdf used on input line 223.
+(pdftex.def)             Requested size: 397.48499pt x 146.37527pt.
+ [4] [5] <fig/fig4.pdf, id=115, 637.44551pt x 346.63254pt>
+File: fig/fig4.pdf Graphic file (type pdf)
+
+<use fig/fig4.pdf>
+Package pdftex.def Info: fig/fig4.pdf used on input line 240.
+(pdftex.def)             Requested size: 397.48499pt x 216.14761pt.
+ [6 <./fig/fig3.pdf>]
+<fig/fig5.pdf, id=625, 904.38696pt x 282.6363pt>
 File: fig/fig5.pdf Graphic file (type pdf)
  <use fig/fig5.pdf>
-Package pdftex.def Info: fig/fig5.pdf used on input line 256.
-(pdftex.def)             Requested size: 397.48499pt x 125.27296pt.
- [6 <./fig/fig3.pdf>] [7 <./fig/fig4.pdf> <./fig/fig5.pdf
+Package pdftex.def Info: fig/fig5.pdf used on input line 255.
+(pdftex.def)             Requested size: 397.48499pt x 124.21803pt.
 
-pdfTeX warning: /usr/texbin/pdflatex (file ./fig/fig5.pdf): PDF inclusion: mult
-iple pdfs with page group included in a single page
->] (./nodeTopology_social2012.bbl) [8] (./nodeTopology_social2012.aux)
+Underfull \vbox (badness 2680) has occurred while \output is active []
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+ [7 <./fig/fig4.pdf>] (./nodeTopology_social2012.bbl) [8 <./fig/fig5.pdf>]
+(./nodeTopology_social2012.aux) ) 
 Here is how much of TeX's memory you used:
  5571 strings out of 493488
  74436 string characters out of 3141326
- 127895 words of memory out of 3000000
+ 128898 words of memory out of 3000000
  8762 multiletter control sequences out of 15000+200000
  26050 words of font info for 61 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,19n,39p,991b,542s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolC.enc}{/
-usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolE.enc}{/usr/
-local/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolF.enc}{/usr/loca
-l/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolA.enc}{/usr/local/te
-xlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/MnSymbolD.enc}{/usr/local/texliv
-e/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2012/texmf-di
-st/fonts/type1/public/mnsymbol/MnSymbol10.pfb></usr/local/texlive/2012/texmf-di
-st/fonts/type1/public/mnsymbol/MnSymbol5.pfb></usr/local/texlive/2012/texmf-dis
-t/fonts/type1/public/mnsymbol/MnSymbol7.pfb></usr/local/texlive/2012/texmf-dist
-/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2012/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2012/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2012/texmf-dist/font
-s/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2012/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2012/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/
-public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2012/texmf-dist/fonts/ty
-pe1/urw/courier/ucrr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/
-times/utmb8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmr
-8a.pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on nodeTopology_social2012.pdf (8 pages, 897812 bytes).
+ 37i,19n,39p,958b,542s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/local/texlive/2012/texmf-dist/fonts/enc/
+dvips/mnsymbol/MnSymbolC.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvip
+s/mnsymbol/MnSymbolE.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mn
+symbol/MnSymbolF.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymb
+ol/MnSymbolA.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mnsymbol/M
+nSymbolD.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/base/8r.enc}</
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol10.pfb></
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol5.pfb></u
+sr/local/texlive/2012/texmf-dist/fonts/type1/public/mnsymbol/MnSymbol7.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr
+/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/l
+ocal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/loc
+al/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
+/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/te
+xlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
+ve/2012/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/t
+exlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-
+dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on nodeTopology_social2012.pdf (8 pages, 897692 bytes).
 PDF statistics:
- 903 PDF objects out of 1000 (max. 8388607)
- 606 compressed objects within 7 object streams
+ 904 PDF objects out of 1000 (max. 8388607)
+ 607 compressed objects within 7 object streams
  0 named destinations out of 1000 (max. 500000)
  26 words of extra memory for PDF output out of 10000 (max. 10000000)
 
