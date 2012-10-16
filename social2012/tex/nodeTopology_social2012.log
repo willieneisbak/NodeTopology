@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 OCT 2012 02:27
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  16 OCT 2012 02:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -495,7 +495,7 @@ File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 28.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4713) has occurred while \output is active []
 
  [1
 
@@ -541,7 +541,7 @@ Here is how much of TeX's memory you used:
  8762 multiletter control sequences out of 15000+200000
  26050 words of font info for 61 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 37i,19n,39p,958b,542s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 37i,19n,39p,1021b,542s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/local/texlive/2012/texmf-dist/fonts/enc/
 dvips/mnsymbol/MnSymbolC.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvip
 s/mnsymbol/MnSymbolE.enc}{/usr/local/texlive/2012/texmf-dist/fonts/enc/dvips/mn
@@ -562,7 +562,7 @@ exlive/2012/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2
 012/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2012/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2012/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on nodeTopology_social2012.pdf (8 pages, 897692 bytes).
+Output written on nodeTopology_social2012.pdf (8 pages, 897791 bytes).
 PDF statistics:
  904 PDF objects out of 1000 (max. 8388607)
  607 compressed objects within 7 object streams
