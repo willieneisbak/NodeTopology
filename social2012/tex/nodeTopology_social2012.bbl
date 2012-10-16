@@ -1,4 +1,4 @@
-\begin{thebibliography}{5}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -26,6 +26,14 @@ M.~E.~J. Newman.
   matrices.
 \newblock \emph{Phys. Rev. E}, 74:\penalty0 036104, Sep 2006.
 
+\bibitem[Pujol et~al.(2001)Pujol, Link, Liu, Kurz, Alloing, Tan, Ray, Solari,
+  Johnson, and Ewbank]{pujol2001reverse}
+N.~Pujol, E.M. Link, L.X. Liu, C.L. Kurz, G.~Alloing, M.W. Tan, K.P. Ray,
+  R.~Solari, C.D. Johnson, and J.J. Ewbank.
+\newblock A reverse genetic analysis of components of the toll signaling
+  pathway in< i> caenorhabditis elegans</i>.
+\newblock \emph{Current Biology}, 11\penalty0 (11):\penalty0 809--821, 2001.
+
 \bibitem[Reis et~al.(2004)Reis, Golgher, Silva, and Laender]{reis2004automatic}
 D.~C. Reis, P.~B. Golgher, A.~S. Silva, and A.~F. Laender.
 \newblock Automatic web news extraction using tree edit distance.
@@ -40,5 +48,15 @@ Kaspar Riesen and Horst Bunke.
 \newblock \emph{Image Vision Comput.}, 27\penalty0 (7):\penalty0 950--959, jun
   2009.
 \newblock ISSN 0262-8856.
+
+\bibitem[Watts and Strogatz(1998)]{watts1998collective}
+DJ~Watts and SH~Strogatz.
+\newblock Collective dynamics of'small-world'networks.
+\newblock \emph{Nature}, 393\penalty0 (6684):\penalty0 440--442, 1998.
+
+\bibitem[Zachary(1977)]{zachary1977information}
+W.W. Zachary.
+\newblock An information flow model for conflict and fission in small groups.
+\newblock \emph{Journal of anthropological research}, pages 452--473, 1977.
 
 \end{thebibliography}

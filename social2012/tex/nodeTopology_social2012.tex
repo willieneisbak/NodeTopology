@@ -33,11 +33,11 @@ This paper proposes a method for characterizing the local network topology in th
 \section{Introduction}
 \label{sec:intro}
 
-The topological structure in the vicinity of a node in a network has the potential to provide useful information about the character of the node, or about the role it plays in relation to adjacent nodes. Networks may contain groups of nodes that have similar local topologies; identifying these groups could shed some basic insight into the range of roles played by entities in a network, gleaned wholly from relational data. For example, in the context of social networks, the local topology around a person includes connections to friends, as well as the interconnections between friends or between friends of friends. The local network structure will depend both on the immediate relations of the person as well as on the characteristics of the friend groups in which the person resides.% Descriptors of local network topology are also relevant in realms such as web spam detection and studies of roles in neural or other biological networks.
+The topological structure in the vicinity of a node in a network has the potential to provide useful information about the character of the node and the role it plays in relation to adjacent nodes. Networks may contain groups of nodes that have similar local topologies; identifying these groups sheds insight into the range and types of roles played by the entities in a network. In the context of social networks, the local topology around a person includes connections to friends, as well as the interconnections between friends or between friends of friends. The local network structure will depend both on the immediate relations of the person as well as on the characteristics of the friend groups in which the person resides.% Descriptors of local network topology are also relevant in realms such as web spam detection and studies of roles in neural or other biological networks.
 
 Node degree can be viewed as a simple descriptor of local topology. However, it does not capture the potentially complex relations among the immediate neighbors of a node, nor does it incorporate information about the network structure greater than one step away. Additionally, as the degree of a node grows, so does the amount of possible relations among its neighbors. In order to capture the increasing complexity of the local topology, we desire a richer descriptor of the local edge structure that is able to encode the local topology as its complexity scales with node degree.
 
-To this end, we develop a method for embedding nodes in Euclidean space based on local network structure (note that a map from each node into $\mathbb{R}^{k}$ can be viewed as a $k$-dimensional descriptor of the local topology). In this paper, we present algorithms to accomplish this embedding through the use of a metric that gives a distance between the subgraphs of a network. The subgraphs capture local network structure around a node, and the metric allows a $k$-dimensional descriptor to be constructed for each node by finding its distance to a set of other nodes. After defining this metric and providing algorithms for its computation, we demonstrate the method on a number of network datasets and show its ability to find groups of nodes that have similar roles in relation to their local regions in a graph. 
+To this end, we develop a method for embedding nodes in Euclidean space based on local network structure (note that a map from each node into $\mathbb{R}^{k}$ can be viewed as a $k$-dimensional descriptor of the local topology). In this paper, we present algorithms to accomplish this embedding through the use of a metric that defines a distance between the subgraphs of a network. The subgraphs capture local network structure around a node, and the metric allows a $k$-dimensional descriptor to be constructed for each node by finding its distance to a set of other nodes. After defining this metric and providing algorithms for its computation, we demonstrate the method on a number of network datasets and show its ability to find groups of nodes that have similar roles in relation to their local regions in a graph. 
 
 
 \section{Definitions}
@@ -113,12 +113,12 @@ Algorithm~\ref{alg:overviewEmbedding} gives an overview of the process of embedd
 \end{algorithmic}
 \end{algorithm}
 
-The embedding into Euclidean space is wholly dependent upon computation of the FNED between the local topologies of the nodes. The following algorithms provide different methods for computing the FNED.
+The embedding into Euclidean space is wholly dependent upon computation of the FNED between the local topologies of the nodes. The algorithms in the following sections provide different methods for computing the FNED, given certain graph types.
 
 
 \subsection{Deterministic FNED for Trees}
 
-In Algorithm~\ref{alg:trueFnedTrees} we give a polynomial time algorithm for computing the FNED between nodes in a tree for 2-step local topologies. We will give approximate algorithms for computing the FNED between nodes in an arbitrary graph in Section~\ref{sec:approxFned}, as it is, in general, not possible to compute exactly in polynomial time. This algorithm can also be used as a basis for approximate FNED computation in arbitrary graphs for $2$-step local topologies.
+In Algorithm~\ref{alg:trueFnedTrees} we give a polynomial time algorithm for computing the FNED between nodes in a tree for 2-step local topologies. We will give approximate algorithms for computing the FNED between nodes in an arbitrary graph in Section~\ref{sec:approxFned}, as the FNED is, in general, not possible to compute exactly in polynomial time. Algorithm~\ref{alg:trueFnedTrees} can also be used as a basis for approximate FNED computation in arbitrary graphs for $2$-step local topologies.
 \begin{algorithm}[h!tbp]
 \caption{Deterministic FNED for Trees}
 \label{alg:trueFnedTrees}
@@ -217,25 +217,27 @@ Here, we formulate computation of the FNED between nodes as a stochastic combina
 
 
 \subsection{Assessment of Role Discovery on Synthetic Graphs}
-We'd like to asses the performance of this method on synthetic data containing nodes with known roles (i.e. nodes with pre-specified types of local topologies), in order to judge whether the method is able to accurately find groups with similar topological structure in a graph. To carry out this synthetic experiment, we defined a simple model for roles in a network consisting of a Gaussian mixture over the node degrees and a Gaussian mixture over the number of edges 
+We'd like to asses the performance of this method on synthetic data containing nodes with known roles (i.e. nodes with pre-specified types of local topologies), in order to judge whether the method is able to accurately find groups of nodes with similar topological structures in a graph. To carry out this synthetic experiment, we defined a simple model for roles in a network consisting of a Gaussian mixture over the node degrees and a Gaussian mixture over the number of edges 
 
 
-\subsection{Role Discovery Demonstration on Small Social Networks}
-As an initial demonstration of our method, we apply it to two well studied small social network datasets. The first shows friendships among 34 members of a karate club at a US university, and the second consists of associations among a collection of 62 dolphins \cite{bottleNoseDolphinPeople}, where an edge was assigned between two dolphins if researchers spotted them traveling in the same group.
+\subsection{Demonstration of Method on Small Social Networks}
+We apply our method to two well studied social network datasets. The first shows friendships among members of a karate club at a US university \cite{zachary1977information}, and the second consists of associations among a collection of dolphins \cite{bottleNoseDolphinPeople}.
 \begin{figure*}[h!tbp]
   \centering               
   \includegraphics[width=1\textwidth]{fig/fig3.pdf}
-  \caption{A dolphin social network is shown. The axes denote the first two principal components of the Euclidean embedding of the nodes (i.e. dolphins). Clustering the dolphins (using the $k$-means algorithm) yields three main types of local topologies in this social network, which we can view as clusters of dolphin social behavior. The dolphin's names are shown, as are the edges in the network, and the marker color in both plots denotes each dolphin's cluster assignment.}
-  \label{fig:dolphinSocialNetwork}
+  \caption{Results of embedding and role-clustering for two social networks. (a) The first two MDS components of each embedded node in the karate club social network dataset and (b) dolphin social network dataset. The network edges are drawn and the nodes are colored based on clustering the embedded points. (c) A heatmap encoding the Euclidean embedding for nodes in the dolphin social network dataset and (d) karate club social network dataset.}
+  \label{fig:smallSocialNetwork}
 \end{figure*}
 
-Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies for both datasets. Aften embedding, the $k$-means algorithm was carried out to perform clustering of the nodes based on their local topologies. The $k$-means algorithm was initialized at 10 clusters, but returned three clusters in both cases as a result. The embedding appears to separate the entities in both networks by their social patterns, with the largest cluster containing nodes with low degree, and the other two containing clusters with high degree. In the karate class dataset, one of the larger clusters appears to be more interconnected than the other, while in the dolphin social network, the three clusters might be interpreted as high sociability, medium sociability, and low sociability. Figure~\ref{fig:dolphinSocialNetwork} plots the first two principal components of the node embedding, with marker color denoting the $k$-means cluster assignment (note that $k$-means was performed on the embedded feature vector, not on the principal components). The second plot on this figure shows the dolphin social network graph. Visually, one can see the number of edges decreasing when moving from left to right along the curve.
+Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies for both datasets. After embedding, the $k$-means algorithm was carried out to cluster the nodes into groups with similar local topologies. The $k$-means algorithm was initialized at ten clusters, and converged to three clusters in both datasets. The entities in both networks were partitioned based on their social patterns, with the largest cluster containing a collection of low-degree nodes, and the other two clusters splitting the high-degree nodes into groups based on the connectivity between their adjacent nodes.
+
+To visualize the embedding, multidimensional scaling (MDS) was applied to reduce the dimension of embedded nodes. Figure~\ref{fig:smallSocialNetwork} plots the first two MDS components, with marker color denoting the clustering results. In both plots, the node degree tends to decrease when moving from left to right across the $x$-axis. Nodes with a low degree tend to cluster together and those with a high degree tend to spread further apart, due to the potential for increased topological complexity around higher-degree nodes. Figure~\ref{fig:smallSocialNetwork} also displays the embedding for all nodes in each graph as a heatmap. Heatmaps are useful for visualizing the embedded nodes (the $i^{th}$ row/column represents the $i^{th}$ node's vector embedding) and identifying groups of points with similar local topologies.
 
 
-\subsection{College Football Team Matches with League Labels}
-The datset in this experiment consists of the ``matchups'' between 115 college football teams \cite{newman2006finding} in a given season. Edges are assigned between two teams if they play each other during the season. Additionally, this dataset provides a label for each team to the league in which it resides (out of 12 leagues). 
+\subsection{The Topology Among Teams in College Football Conferences}
+The datset in this experiment consists of a network of college football teams \cite{newman2006finding}. Edges connect pairs of teams if they are scheduled to play each other. This dataset provides a label for each team representing its conference (out of 12 possible conferences). 
 
-Similar to the previous experiment, we hope to show that the embedding method described in this paper yields features that could be used to benefit a supervised machine learning problem; in particular, we hope to see an embedding that places teams with similar matchup topologies near each other in space. We would guess that teams residing in the same league have similar matchup topologies.
+In this experiment, instead of clustering the embedded points, we color each according to its conference association. We aim to assess whether teams in a given conference have similar local topologies (we'd expect this to be the case, as there exist per-conference policies regarding the number of games played against in-conference and out-of-conference opponents).
 
 \begin{figure*}[h!tbp]
   \centering               
@@ -244,10 +246,13 @@ Similar to the previous experiment, we hope to show that the embedding method de
   \label{fig:footballTeams}
 \end{figure*}
 
-Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies. Figure~\ref{fig:footballTeams} shows the first two principal components of the Euclidean embedding. This figure also shows school name for each team and the matchup graph edges. In both plots, color denotes league assignment. We find that the embedding often places football teams from the same league at similar points in space. We also find a number of other points of interest, such as places where schools from similar geographic locations are embedded similarly (even for similar geographic schools in different leagues).
+Embedding was performed using the MCMC algorithm to compute the FNED between 1-step local topologies. Figure~\ref{fig:footballTeams} shows the first two MDS components of the Euclidean embedding. This figure also shows the correspondence between each node and its conference label. We find that the embedding often places football teams from the same conference at similar points in space. This is reflected in the heatmap displaying the embedding of all nodes, where we see clear clusters along the diagonal. Figure~\ref{fig:footballTeams} allows us to see which conferences have teams with very similar (e.g. Pacific Ten) or more varied (e.g. Mid-American) local topologies, which conferences are similar to others in terms of the local topologies of their teams, and in a couple cases, which teams have a local topology distinct from the others in their conference. 
 
 
-\subsection{Comparing Topological Descriptors with Node Degree}
+\subsection{Role Discovery in Larger Networks and Comparisons with Node Degree}
+In this experiment, we hope to demonstrate the ability of our method to discover groups of nodes with similar roles in larger networks, and explicitely compare our descriptor of local topology around a node with the node's degree. We apply our method two two networks: a neural network of the nematode C. Elegans \cite{pujol2001reverse,watts1998collective}, and a coauthorship network for network scientists \cite{newman2006finding}.
+
+
 The dataset in this experiment consists of the 60 most common nouns and adjectives in Charles Dickens' David Copperfield \cite{newman2006finding}. Edges are assigned between words if they appear adjacent to each other at any point in the text.
 
 In this experiment, we hope to show that the embedding method described in this paper yields features that could be used to benefit a supervised machine learning problem; if so, Euclidean local topology features could be added to the features of datasets that are equipped with information about relationships between data elements. In particular, we hope to see some sort of differentiation between the embedding of adjectives and the embedding of the nouns in this dataset.
