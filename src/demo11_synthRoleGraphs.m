@@ -1,6 +1,7 @@
 function fnedMat = demo11_synthRoleGraphs()
 
 % specify a distribution over roles (e.g. two mixture distributions), compute FNED for each pair of role-graphs generated and place into fnedMat
+% note: this demo (using the makeRoleGraph function) didn't result in clusters of FNED-vectors / similar-topology structures as desired.
 
 
 % role mixture distributions are below

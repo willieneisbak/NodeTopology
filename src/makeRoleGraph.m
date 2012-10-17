@@ -1,6 +1,6 @@
 function graph = makeRoleGraph(nodeDegree,numInterConnects)
 
-% return a random graph with nodeDegree number of neighbors and numInterConnects number of connections between neighbors.
+% return a random graph consisting of a root node with nodeDegree number of neighbors and numInterConnects number of links between neighbors (where these links do no touch root node, links are randomly placed, and there can be multi-links between neighbors).
 
 numNodes = nodeDegree+1;
 graph = zeros(numNodes); % size is number of neighbors plus root node
@@ -15,7 +15,7 @@ for i=1:numInterConnects
         if node2 < numNodes
             node2 = node2+1;
         else
-            node2 = node2-1; % if node2 is largest index node can't make it a higher index node.
+            node2 = node2-1; % if node2 has greatest index, can't increase index, so decrease index instead.
         end
     end
     graph(node1,node2) = graph(node1,node2)+1;

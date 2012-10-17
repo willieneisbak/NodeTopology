@@ -1,11 +1,14 @@
 function sample = gmmRand(muVec,sigVec,mixVec)
 
-% sample from a gaussian mixture model
+% this function returns a sample from a gaussian mixture model.
 % with params: muVec=[mu1,mu2,...], sigVec=[sig1,sig2,...], mixVec=[mix1,mix2,...]
 
 
-% normalize mixture vec, just in case
-mixVec = mixVec / sum(mixVec);
+% check if mixture vec is normalized, and normalize it if not
+if sum(mixVec) ~= 1
+    fprintf('Mixture vector parameter does not sum to one. Normalizing now.\n');
+    mixVec = mixVec / sum(mixVec);
+end
 
 % draw class
 u = rand;
