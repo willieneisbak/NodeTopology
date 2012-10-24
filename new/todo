@@ -1,0 +1,19 @@
+todo and brainstorm
+
+1. new title ideas:
+- Euclidean Descriptors of Network Topology
+
+to fix:
+- fix first local topology diagram
+
+algorithm-related
+- deterministic approximation to FNED using tree-approximation
+- characterize complexity of algorithms
+
+experiments-related
+- comparison of embeddings based on 0-step, 1-step, 2-step, etc. local topologies (the 1-dim embedding of 0-step should be exactly degree).
+- finding use for k-FNED (for however many steps), to show topology around more-rich-structures.
+- need to SHOW USE IN SOME EXTERNAL TASK.
+    - (X) differences between graphs in terms of node embeddings (why wouldn't you just use graph-edit-distance?)
+    - some task where it's useful to cluster local topologies
+
