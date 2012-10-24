@@ -17,3 +17,6 @@ experiments-related
     - (X) differences between graphs in terms of node embeddings (why wouldn't you just use graph-edit-distance?)
     - some task where it's useful to cluster local topologies
 
+introduction
+- need to emphasize a motivating example for describing network topology in the introduction.
+- need to cite any previous examples of topology descriptors (graph embedding is closest?) [put this idea in context] (could also describe how people use node degree in different contexts).
