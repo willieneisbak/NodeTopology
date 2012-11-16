@@ -38,23 +38,24 @@ end
 
 % do k means numIter times
 for iter = 1 : numIter
+    
+    disp(means)
 
-	% assign each example to closest mean in means vec  (euc distance)
-	% is below slow? should it be implemented in a faster way? would that way require more memory?
+	% assign each example to closest mean in means vec
 	for k = 1 : size(means,1)
 		diffmat = data - repmat(means(k,:), size(data,1), 1);
 		distmat(:,k) = sqrt(sum(diffmat .* diffmat, 2));  % distmat(i,k) holds distance of i_th data to k_th mean
 	end
 
 	for i = 1 : size(data,1)
-		[del, keep] = max(distmat(i,:));
+		[del, keep] = min(distmat(i,:));
 		labels(i) = keep;
 	end
 
 	% assign each mean in means vec to mean of assigned examples
-	for k = 1 : length(means)
+	for k = 1 : size(means,1)
 		assignedInd = find(labels == k);
-		means(a,:) = sum(data(assignedInd, :))/length(assignedInd); % compute mean
+		means(k,:) = sum(data(assignedInd, :))/length(assignedInd); % compute mean
 	end
 
 	fprintf('iter complete = %d. ', iter);
